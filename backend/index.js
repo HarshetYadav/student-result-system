@@ -36,10 +36,7 @@ db.connect((err) => {
   }
 });
 
-// Route to test server
-// app.get('/', (req, res) => {
-//   res.send('Server is running');
-// });
+
 
 // ✅ Route to get all students
 app.get('/students', (req, res) => {
