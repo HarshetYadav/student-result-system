@@ -65,20 +65,22 @@ student-result-system/
  └── css/ and js/
 
 
+|
 ├── backend/
 
-│ ├── server.js
+ ├── server.js
 
-│ └── routes, config, etc.
+ └── routes, config, etc.
+
 │
 ├── sql/
 
+ ├── students.sql
 
-│ ├── students.sql
+ ├── student_subjects.sql
 
-│ ├── student_subjects.sql
-
-│ └── notices.sql
+ └── notices.sql
+ 
 │
 └── README.md
 
