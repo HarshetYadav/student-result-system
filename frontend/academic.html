@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Academic Info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="academic.css">
+</head>
+<body>
+  <a href="academic-entry.html" class="back-btn">←</a>
+
+  <div id="resultContent">
+    <div class="center-header">
+      <h1>Academic Info</h1>
+      <h3 id="studentHeader"></h3>
+      <label for="semSelect">📘 Select Semester:</label>
+      <select id="semSelect">
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+        <option value="7">Semester 7</option>
+        <option value="8">Semester 8</option>
+      </select>
+    </div>
+
+    <br><br>
+
+    <table border="1" id="subjectTable">
+      <thead>
+        <tr>
+          <th>Course Code</th>
+          <th>Subject Name</th>
+          <th>Grade</th>
+          <th>Credits</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="subjectBody">
+        <!-- Subjects will go here -->
+      </tbody>
+    </table>
+
+    <br>
+    <div class="sgpa-cgpa-container">
+      <div><strong>SGPA : </strong><span id="sgpa">0</span></div>
+      <div><strong>CGPA : </strong><span id="cgpa">0</span></div>
+      <button id="downloadBtn">📄 Download Result as PDF</button>
+    </div>
+  </div>
+
+  <!-- Hidden printable content for PDF -->
+  <div id="printResult" style="display: none; padding: 30px; font-family: 'Inter', sans-serif;">
+    <h2>📄 Student Academic Report</h2>
+    <p><strong>Name:</strong> <span id="printName"></span></p>
+    <p><strong>Roll No:</strong> <span id="printRoll"></span></p>
+    <p><strong>Semester:</strong> <span id="printSemester"></span></p>
+
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Course Code</th>
+          <th>Subject Name</th>
+          <th>Grade</th>
+          <th>Credits</th>
+        </tr>
+      </thead>
+      <tbody id="printTableBody"></tbody>
+    </table>
+
+    <br>
+    <p><strong>SGPA:</strong> <span id="printSGPA">0</span></p>
+    <p><strong>CGPA:</strong> <span id="printCGPA">0</span></p>
+  </div>
+
+  <script src="academic.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!-- <script>
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    // Get student info
+    const name = localStorage.getItem('student_name');
+    const roll = localStorage.getItem('student_roll');
+    const semester = document.getElementById('semSelect').value;
+    const sgpa = document.getElementById('sgpa').textContent;
+    const cgpa = document.getElementById('cgpa').textContent;
+
+    // Create a fresh div dynamically
+    const printableDiv = document.createElement('div');
+    printableDiv.style.padding = '30px';
+    printableDiv.style.fontFamily = 'Inter, sans-serif';
+
+    // Build content
+    printableDiv.innerHTML = `
+      <h2>📄 Student Academic Report</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Roll No:</strong> ${roll}</p>
+      <p><strong>Semester:</strong> ${semester}</p>
+      <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+        <thead>
+          <tr>
+            <th>Course Code</th>
+            <th>Subject Name</th>
+            <th>Grade</th>
+            <th>Credits</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <br>
+      <p><strong>SGPA:</strong> ${sgpa}</p>
+      <p><strong>CGPA:</strong> ${cgpa}</p>
+    `;
+
+    // Add rows from current table
+    const printBody = printableDiv.querySelector('tbody');
+    document.querySelectorAll('#subjectBody tr').forEach(row => {
+      const inputs = row.querySelectorAll('input');
+      if (inputs.length === 0) return;
+      const tr = document.createElement('tr');
+      for (let i = 0; i < 4; i++) {
+        const td = document.createElement('td');
+        td.textContent = inputs[i].value;
+        tr.appendChild(td);
+      }
+      printBody.appendChild(tr);
+    });
+
+    // Append temporarily to body
+    document.body.appendChild(printableDiv);
+
+    // Generate PDF
+    html2pdf().from(printableDiv)
+      .set({
+        margin: 10,
+        filename: `${name.replace(/\s+/g, '_')}_Result.pdf`,
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      })
+      .save()
+      .then(() => {
+        // Remove the temp div
+        document.body.removeChild(printableDiv);
+      });
+  });
+</script> -->
+
+
+</body>
+</html>
