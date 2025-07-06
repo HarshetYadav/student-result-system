@@ -52,18 +52,22 @@ SQL dump is included in the `/sql` folder.
 ## 📁 Project Structure
 
 student-result-system/
+
 │
 ├── frontend/
+
 │ ├── dashboard.html
 │ ├── academic.html
 │ ├── login.html
 │ └── css/ and js/
 │
 ├── backend/
+
 │ ├── server.js
 │ └── routes, config, etc.
 │
 ├── sql/
+
 │ ├── students.sql
 │ ├── student_subjects.sql
 │ └── notices.sql
