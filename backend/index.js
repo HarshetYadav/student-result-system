@@ -1,23 +1,23 @@
-
-
-
 const express = require('express');
-const mysql = require('mysql');
-const app = express();
-
 const path = require('path');
+const app = express();
+const port = 3000;
+const mysql = require('mysql');
 
+// Serve static files from the frontend and images folders
+app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../images')));
+
+// Default route → load login.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
+  res.sendFile(path.join(__dirname, '../frontend/login.html'));
 });
 
-app.use(express.static(path.join(__dirname)));
 
 
 const cors = require('cors');
 app.use(cors());
 
-const port = 3000;
 
 app.use(express.json());
 
