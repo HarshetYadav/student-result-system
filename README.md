@@ -98,7 +98,8 @@ student-result-system/
 ### 📝 Edit Student Info
 ![Edit Student](screenshots/edit-student.png)
 
-### 🎓 Academic Info with SGPA & CGPA
+### 🎓 Academic Info with SGPA & CGPA!
+
 ![Academic Info](screenshots/academic-info.png)
 
 ### 📢 Notices Page
