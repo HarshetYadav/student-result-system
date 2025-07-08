@@ -7,12 +7,15 @@ const mysql = require('mysql2');
 require('dotenv').config(); // ✅ Keep this line
 
 // Serve static files from the frontend and images folders
-app.use(express.static(path.join(__dirname, '../frontend')));
+// app.use(express.static(path.join(__dirname, '../frontend')));
 app.use(express.static(path.join(__dirname, '../images')));
 
 // Default route → load login.html
+// place 'frontend' folder inside 'backend', then:
+app.use(express.static(path.join(__dirname, 'frontend')));
+
 app.get('/', (req, res) => {
-  res.send('✅ Backend is running on Railway!');
+  res.sendFile(path.join(__dirname, '../frontend/login.html'));
 });
 
 
