@@ -1,0 +1,146 @@
+/* academic.css */
+body {
+     position: relative;
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 20px;
+}
+.center-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.center-header h1 {
+  font-size: 32px;
+  color: #333;
+}
+
+.center-header label,
+.center-header select {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+h1, h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #004080; /* Darker blue */
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.back-btn:hover {
+  background-color: #002f5f; /* Even darker on hover */
+  transform: scale(1.05);
+}
+
+
+label {
+  font-weight: 600;
+}
+
+#semSelect {
+  padding: 8px;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  margin: 0 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:last-child {
+  background-color: #59bd40;
+}
+
+td:last-child {
+  white-space: nowrap;
+}
+
+#sgpa, #cgpa {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Center SGPA and CGPA and increase size */
+.sgpa-cgpa-container {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 18px;
+  color: #333;
+}
+
+.sgpa-cgpa-container span {
+  font-size: 22px;
+  color: #007bff;
+  font-weight: 600;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('library.png') no-repeat center center / cover;
+  filter: blur(6px);
+  opacity: 0.75;
+  z-index: -1;
+}
+
