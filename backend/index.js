@@ -12,8 +12,9 @@ app.use(express.static(path.join(__dirname, '../images')));
 
 // Default route → load login.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/login.html'));
+  res.send('✅ Backend is running on Railway!');
 });
+
 
 const cors = require('cors');
 app.use(cors());
