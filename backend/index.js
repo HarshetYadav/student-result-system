@@ -3,6 +3,7 @@ const path = require('path');
 const app = express();
 const port = 3000;
 const mysql = require('mysql');
+require('dotenv').config(); // ✅ Keep this line
 
 // Serve static files from the frontend and images folders
 app.use(express.static(path.join(__dirname, '../frontend')));
@@ -13,19 +14,17 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/login.html'));
 });
 
-
-
 const cors = require('cors');
 app.use(cors());
-
 
 app.use(express.json());
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'studentDB'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME
 });
 
 db.connect((err) => {
@@ -35,8 +34,6 @@ db.connect((err) => {
     console.log('✅ MySQL connected');
   }
 });
-
-
 
 // ✅ Route to get all students
 app.get('/students', (req, res) => {
@@ -142,7 +139,6 @@ app.get('/notices', (req, res) => {
   });
 });
 
-
 // Post a new notice
 app.post('/notices', (req, res) => {
   const { message } = req.body;
@@ -154,7 +150,6 @@ app.post('/notices', (req, res) => {
     res.send({ message: "Notice posted successfully" });
   });
 });
-
 
 // Delete a notice
 app.delete('/notices/:id', (req, res) => {
@@ -177,7 +172,6 @@ app.post('/login', (req, res) => {
   }
   return res.status(401).send({ error: 'Invalid username or password' });
 });
-
 
 // Start the server
 app.listen(port, () => {
