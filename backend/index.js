@@ -1,35 +1,29 @@
 const express = require('express');
 const path = require('path');
+const mysql = require('mysql');
+const cors = require('cors');
+
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-const mysql = require('mysql2');
-require('dotenv').config(); // ✅ Keep this line
-
-// Serve static files from the frontend and images folders
-// app.use(express.static(path.join(__dirname, '../frontend')));
+// ✅ Serve static files from frontend and images
+app.use(express.static(path.join(__dirname, '../frontend')));
 app.use(express.static(path.join(__dirname, '../images')));
 
-// Default route → load login.html
-// place 'frontend' folder inside 'backend', then:
-app.use(express.static(path.join(__dirname, 'frontend')));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/login.html'));
-});
-
-
-const cors = require('cors');
+// ✅ CORS & JSON parsing
 app.use(cors());
-
 app.use(express.json());
 
+
+
+
+// ✅ MySQL Local DB Connection (Hardcoded)
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME
+  host: 'localhost',
+  user: 'root',
+  password: '', // or 'your_password' if you set one
+  database: 'studentdb',
+  port: 3306
 });
 
 db.connect((err) => {
@@ -39,6 +33,16 @@ db.connect((err) => {
     console.log('✅ MySQL connected');
   }
 });
+
+// ✅ Default route → login.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/login.html'));
+});
+
+// Route to test server
+// app.get('/', (req, res) => {
+//   res.send('Server is running');
+// });
 
 // ✅ Route to get all students
 app.get('/students', (req, res) => {
@@ -144,6 +148,7 @@ app.get('/notices', (req, res) => {
   });
 });
 
+
 // Post a new notice
 app.post('/notices', (req, res) => {
   const { message } = req.body;
@@ -155,6 +160,7 @@ app.post('/notices', (req, res) => {
     res.send({ message: "Notice posted successfully" });
   });
 });
+
 
 // Delete a notice
 app.delete('/notices/:id', (req, res) => {
@@ -178,7 +184,8 @@ app.post('/login', (req, res) => {
   return res.status(401).send({ error: 'Invalid username or password' });
 });
 
+
 // Start the server
 app.listen(port, () => {
-  console.log(`🚀 Server running on port ${port}`);
+  console.log(`🚀 Server running at http://localhost:${port}`);
 });
